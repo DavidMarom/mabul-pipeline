@@ -58,6 +58,14 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
 3. If anything in the brief is ambiguous or conflicts with a hard rule in this skill, raise it before writing code.
 4. When implementation is complete, invoke `/product` and report: a summary of what was built and any deviations from the brief.
 
+**If you were invoked by the `product` skill on the fast track** (Track B — it passed you a task file path + `docs/DESIGN_SYSTEM.md` path, no Design Brief):
+
+1. Read the task file for the full requirements.
+2. Read `docs/DESIGN_SYSTEM.md` — this is your design specification. Use only existing tokens and patterns defined there (colors, spacing, typography, breakpoints, component inventory).
+3. If implementation requires a token, pattern, or component that does not exist in the design system, **stop immediately** — invoke `/designer` with the specific gap ("I need a X token/pattern that isn't in the design system") and wait for it to update `DESIGN_SYSTEM.md` before continuing.
+4. Do not invent new design values — no hardcoded colors, spacing, or sizes outside the token system.
+5. When implementation is complete, invoke `/product` and report: a summary of what was built and any deviations from the task requirements.
+
 ---
 
 ## Tasks

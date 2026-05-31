@@ -82,15 +82,46 @@ One sentence: what does success look like?
 - What this task explicitly does NOT include
 ```
 
-### Step 3 — Invoke the designer
+### Step 2.5 — Classify the request
 
-Hand off to `/designer` with:
+Before any handoff, classify the task into one of two tracks. Write the result into the task file as a top-level field:
+
+```md
+Track: A  <!-- or B -->
+Track reason: <one line — e.g. "new component, no existing pattern" or "bug fix, no visual change"> 
+```
+
+**Track B — fast track (skip designer)** if the request is any of:
+- Bug fix — broken behavior, not broken appearance
+- Copy / content change — text, labels, error messages
+- Logic / data change — hooks, utils, API wiring, state; no new visual surface
+- Small UI tweak where every value already exists in `docs/DESIGN_SYSTEM.md` (spacing adjustment, color swap, sizing)
+- Refactor / cleanup — internal structure, no user-facing visual change
+- Backend / API-only — no UI involvement
+
+**Track A — full pipeline (design required)** if the request involves:
+- A new UI surface, component, layout, or visual pattern
+- A new interaction or animation not already in the design system
+- Anything not clearly covered by existing tokens in `docs/DESIGN_SYSTEM.md`
+
+**When in doubt, default to Track A** — this preserves design quality.
+
+### Step 3 — Route based on track
+
+**Track A:** Hand off to `/designer` with:
 - The full contents of the task file
 - The task file path: `.claude/tasks/<task-name>.md`
 
 Tell the designer: "Please produce a Design Brief for this task, then invoke `/developer` to implement it."
 
 The designer will chain directly to the developer — you do not need to wait or relay the brief.
+
+**Track B:** Hand off directly to `/developer` with:
+- The full contents of the task file
+- The task file path: `.claude/tasks/<task-name>.md`
+- The path to the design system: `docs/DESIGN_SYSTEM.md`
+
+Tell the developer: "This is a fast-track task (Track B — no new design required). Use `docs/DESIGN_SYSTEM.md` as your design reference. Implement the task, then invoke `/product` to report completion."
 
 ### Step 4 — Close the task
 
@@ -104,6 +135,6 @@ When the developer reports completion:
 ## Rules
 
 - Never change the task filename after creating it — other skills depend on the exact path
-- Never skip the designer step, even for small tasks — every feature needs a design definition
+- Always classify the request (Step 2.5) before routing — never skip classification
 - Never pass vague instructions to other skills — always include the task file path and full context
 - If the user changes the requirements mid-flow, update the task file first, then re-brief the affected skill
