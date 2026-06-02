@@ -12,7 +12,7 @@ export function Hero() {
 
         <div className={styles.ctaGroup}>
           <a
-            href="https://github.com/DavidMarom/david-pipeline"
+            href="https://github.com/DavidMarom/mabul-pipeline"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.primaryCta}

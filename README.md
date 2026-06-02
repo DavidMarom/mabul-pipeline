@@ -4,8 +4,8 @@
 ## Getting Started
 Run:
 ```bash
-git clone https://github.com/DavidMarom/david-pipeline.git
-cd david-pipeline
+git clone https://github.com/DavidMarom/mabul-pipeline.git
+cd mabul-pipeline
 bash setup.sh
 ```
 

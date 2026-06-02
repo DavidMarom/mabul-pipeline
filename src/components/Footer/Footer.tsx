@@ -6,7 +6,7 @@ export function Footer() {
       <p className={styles.text}>
         © {new Date().getFullYear()} David Pipeline —{" "}
         <a
-          href="https://github.com/DavidMarom/david-pipeline"
+          href="https://github.com/DavidMarom/mabul-pipeline"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}

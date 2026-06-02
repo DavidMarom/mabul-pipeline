@@ -3,8 +3,8 @@
 import { useState } from "react";
 import styles from "./CodeBlock.module.css";
 
-const CODE = `git clone https://github.com/DavidMarom/david-pipeline.git
-cd david-pipeline
+const CODE = `git clone https://github.com/DavidMarom/mabul-pipeline.git
+cd mabul-pipeline
 bash setup.sh`;
 
 export function CodeBlock() {

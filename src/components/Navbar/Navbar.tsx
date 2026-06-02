@@ -8,7 +8,7 @@ export function Navbar() {
         <span className={styles.logo}>david pipeline SKILLS</span>
         <nav className={styles.actions}>
           <a
-            href="https://github.com/DavidMarom/david-pipeline"
+            href="https://github.com/DavidMarom/mabul-pipeline"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.githubLink}
