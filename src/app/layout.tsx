@@ -13,18 +13,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "David Pipeline",
-  description: "An open source template pipeline for developers.",
+  title: "Mabul Pipeline",
+  description: "AI development pipeline",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon.ico", sizes: "48x48" },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    apple: { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
-  manifest: "/manifest.webmanifest",
+  manifest: "/favicon/site.webmanifest",
 };
 
 export default function RootLayout({
