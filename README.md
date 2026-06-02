@@ -6,9 +6,7 @@ Run:
 ```bash
 git clone https://github.com/DavidMarom/david-pipeline.git
 cd david-pipeline
-rm -rf .git
-npm install
-code .
+bash setup.sh
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.

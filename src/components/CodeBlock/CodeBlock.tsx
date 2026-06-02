@@ -5,9 +5,7 @@ import styles from "./CodeBlock.module.css";
 
 const CODE = `git clone https://github.com/DavidMarom/david-pipeline.git
 cd david-pipeline
-rm -rf .git
-npm install
-code .`;
+bash setup.sh`;
 
 export function CodeBlock() {
   const [copied, setCopied] = useState(false);
