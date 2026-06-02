@@ -1,4 +1,4 @@
-# David Pipeline | Start with `/product`
+# Mabul Pipeline | Start with `/product`
 
 
 ## Getting Started

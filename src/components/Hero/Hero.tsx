@@ -6,7 +6,7 @@ export function Hero() {
     <section className={styles.hero}>
       <div className={styles.content}>
         <p className={styles.eyebrow}>Start with /product</p>
-        <h1 className={styles.headline}>David Pipeline</h1>
+        <h1 className={styles.headline}>Mabul Pipeline</h1>
 
         <CodeBlock />
 
