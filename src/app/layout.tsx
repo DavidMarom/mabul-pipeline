@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   description: "AI development pipeline",
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico", sizes: "48x48" },
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon2/favicon.ico", sizes: "48x48" },
+      { url: "/favicon2/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon2/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    apple: { url: "/favicon2/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
-  manifest: "/favicon/site.webmanifest",
+  manifest: "/favicon2/site.webmanifest",
 };
 
 export default function RootLayout({
