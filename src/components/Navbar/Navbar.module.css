@@ -31,6 +31,27 @@
   gap: var(--space-3);
 }
 
+.navLink {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  border-radius: 4px;
+  padding: 4px 8px;
+  min-height: 44px;
+  transition: color 150ms ease;
+}
+
+.navLink:hover {
+  color: var(--color-text-primary);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .githubLink {
   display: flex;
   align-items: center;

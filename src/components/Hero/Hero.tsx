@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Hero.module.css";
 import { CodeBlock } from "@/components/CodeBlock/CodeBlock";
 
@@ -19,6 +20,9 @@ export function Hero() {
           >
             Get Started
           </a>
+          <Link href="/skills" className={styles.secondaryCta}>
+            Explore Skills →
+          </Link>
         </div>
       </div>
     </section>

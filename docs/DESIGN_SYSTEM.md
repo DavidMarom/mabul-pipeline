@@ -79,7 +79,7 @@ Max content width: **1080px**, centered with `margin: 0 auto`.
 | Cards | 12px |
 | Icon badges | 10px |
 | Focus ring offset elements | 2–4px |
-| Buttons (when added) | 6px (TBD) |
+| Buttons | 8px — consistent with Hero implementation; softer than card radius to feel actionable |
 
 ---
 
@@ -119,3 +119,6 @@ bg → surface → surface-raised
 | Features (grid) | `src/components/Features/` | Stable |
 | Hero | `src/components/Hero/` | In progress |
 | Icons | `src/components/icons/` | In progress |
+| PageHeader | `src/components/PageHeader/` | Planned — inner-page eyebrow + h1 + tagline pattern |
+| SkillCard | `src/components/SkillCard/` | Planned — command badge + persona + responsibilities |
+| PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
