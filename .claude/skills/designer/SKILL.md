@@ -33,11 +33,23 @@ Read everything the product skill provides:
 
 Ask one clarifying question if a critical piece is missing. Do not proceed with guesses.
 
+Update the `Status` field in the task file to `designing`.
+
 ### 2. Produce design definitions
 
 Output a structured **Design Brief** (see format below). This is your deliverable back to the `product` skill and to the `developer` skill.
 
 All color, spacing, and typography values in the brief must reference existing design system tokens. If a new token is needed, define it in the brief and add it to the design system file.
+
+### 2.5. Persist the Design Brief in the task file
+
+After producing the brief, **append it to the task file** received from `product`. Add it under a `## Design Brief` section at the end of the file. This makes the brief durable across sessions — future agents can reconstruct full context just by reading the task file.
+
+```md
+## Design Brief
+
+<paste the full Design Brief here>
+```
 
 ### 3. Update the design system
 
@@ -50,6 +62,8 @@ After finalising the brief, update `docs/DESIGN_SYSTEM.md` to reflect any:
 Keep the file the single source of truth — no design decision should live only in a brief.
 
 ### 4. Hand off
+
+Update the `Status` field in the task file to `implementing`.
 
 Invoke `/developer` with:
 - The full Design Brief you just produced

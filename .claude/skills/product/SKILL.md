@@ -59,16 +59,34 @@ The developer is asking what to work on. Do **not** run the normal intake flow. 
 1. Read `.claude/tasks/.current-task`.
 2. If it contains a valid task path, read that task file and reply to the developer with:
    - The task file path
-   - The full task file contents
-   - Any Design Brief already produced (check if one exists in the conversation or in the task file)
+   - The full task file contents (which may include a `## Design Brief` section appended by the designer)
    - Instruction: "Implement this task."
 3. If the file is missing, empty, or the task path no longer exists, ask the user:
    > "The developer is asking what to work on, but I don't have an active task recorded. What should we build next?"
    Then run the normal intake flow (Steps 1–5) and brief the developer once you have a Design Brief.
 
-### Invoked by the user
+### Invoked by the user — `/status` command
 
-Run the normal workflow below (Steps 1–6).
+If the user says **"status"** or **"/status"**, do not run intake. Instead:
+
+1. Read `.claude/tasks/.current-task`.
+2. If it contains a valid task path, read that task file and print:
+   ```
+   Active task: <title> (<path>)
+   Stage: <Status field value>
+   ```
+3. If `.current-task` is missing or empty, print: "No task currently in progress."
+
+### Invoked by the user — resume
+
+If the user invokes `/product` without a new feature request AND `.current-task` contains a valid path, read the task file and check its `Status` field:
+- `designing` — remind the user the designer is working on it; offer to re-brief the designer
+- `implementing` — remind the user the developer is working on it; offer to re-brief the developer
+- `reviewing` — prompt the user for sign-off (Step 4 flow)
+
+### Invoked by the user — new task
+
+If the user provides a feature request or problem description, run the normal workflow below (Steps 1–4).
 
 ---
 
@@ -94,6 +112,8 @@ Task file format:
 ```md
 # Task: <human-readable title>
 
+Status: intake
+
 ## Problem
 What pain or need does this address? Who experiences it?
 
@@ -110,6 +130,8 @@ One sentence: what does success look like?
 ## Out of scope
 - What this task explicitly does NOT include
 ```
+
+The `Status` field is a machine-readable pipeline stage. Valid values: `intake` → `designing` → `implementing` → `reviewing` → `done`. Each skill updates this field when it takes ownership.
 
 ### Step 2.5 — Classify the request
 
@@ -157,7 +179,15 @@ Tell the developer: "This is a fast-track task (Track B — no new design requir
 When the developer reports completion:
 1. Summarise what was built for the user
 2. Ask the user to confirm the task is done
-3. On confirmation, rename the task file to `.claude/tasks/<task-name>.done.md` and delete `.claude/tasks/.current-task`
+3. On confirmation:
+   - Append the following to the task file:
+     ```md
+     ## Completion Summary
+     <one paragraph: what was built, confirmed by the user, date closed>
+     ```
+   - Update `Status: done` in the task file
+   - Rename the task file to `.claude/tasks/<task-name>.done.md`
+   - Delete `.claude/tasks/.current-task`
 
 ---
 
