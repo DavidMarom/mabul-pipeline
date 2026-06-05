@@ -8,3 +8,4 @@ export { Footer } from "./Footer/Footer";
 export { PageHeader } from "./PageHeader/PageHeader";
 export { SkillCard } from "./SkillCard/SkillCard";
 export { PipelineFlow } from "./PipelineFlow/PipelineFlow";
+export { DiscordBanner } from "./DiscordBanner/DiscordBanner";

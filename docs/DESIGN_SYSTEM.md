@@ -20,6 +20,8 @@ Defined in `src/app/globals.css` as CSS custom properties.
 | `--color-accent` | `#4f8ef7` | CTAs, links, focus rings, icons |
 | `--color-accent-dim` | `rgba(79,142,247,0.12)` | Icon badge backgrounds, subtle highlights |
 | `--color-accent-hover` | `#3a7de0` | Accent on hover |
+| `--color-discord` | `#5865F2` | Discord brand CTA background — purposefully off-palette to signal "leaves the app" |
+| `--color-discord-hover` | `#4752c4` | Discord CTA hover state |
 
 **Theme:** dark only (`color-scheme: dark` on `html`).
 
@@ -122,3 +124,4 @@ bg → surface → surface-raised
 | PageHeader | `src/components/PageHeader/` | Planned — inner-page eyebrow + h1 + tagline pattern |
 | SkillCard | `src/components/SkillCard/` | Planned — command badge + persona + responsibilities |
 | PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
+| DiscordBanner | `src/components/DiscordBanner/` | Planned — community invite strip between Personas and Footer |

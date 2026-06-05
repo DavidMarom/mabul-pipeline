@@ -1,4 +1,4 @@
-import { Navbar, Hero, Personas, Footer } from "@/components";
+import { Navbar, Hero, Personas, DiscordBanner, Footer } from "@/components";
 
 export default function HomePage() {
   return (
@@ -7,6 +7,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Personas />
+        <DiscordBanner />
       </main>
       <Footer />
     </>
