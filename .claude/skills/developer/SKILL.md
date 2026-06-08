@@ -41,6 +41,8 @@ components/
 
 ## Invocation
 
+Before implementing anything, read `docs/LEARNINGS.md` — its `## Development` section holds short, cross-task notes (pitfalls hit, patterns that worked, deviations that recurred) that should inform how you approach the current task.
+
 **If you were invoked directly by the user (not by another skill):**
 Invoke the `/product` skill immediately and ask it: "What task should the developer work on next? What was the last task in progress?" Do not begin any implementation until `product` has briefed you with a task file path and Design Brief.
 
@@ -57,6 +59,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - Deviations from brief: <list, or "none">
      - New design tokens used: <list, or "none">
      ```
+   - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
    - Update `Status: reviewing` in the task file
    - Invoke `/product` and report: a summary of what was built and any deviations from the brief.
 
@@ -73,6 +76,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - Deviations from brief: <list, or "none">
      - New design tokens used: <list, or "none">
      ```
+   - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
    - Update `Status: reviewing` in the task file
    - Invoke `/product` and report: a summary of what was built and any deviations from the brief.
 
@@ -90,6 +94,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - Deviations from task requirements: <list, or "none">
      - New design tokens used: <list, or "none">
      ```
+   - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
    - Update `Status: reviewing` in the task file
    - Invoke `/product` and report: a summary of what was built and any deviations from the task requirements.
 

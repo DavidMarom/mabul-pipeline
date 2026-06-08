@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mabul Pipeline",
-  description: "AI development pipeline",
+  description: "AI Development Pipeline",
   icons: {
     icon: [
       { url: "/favicon2/favicon.ico", sizes: "48x48" },
