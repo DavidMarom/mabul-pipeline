@@ -1,6 +1,6 @@
 # Task: Portfolio Landing — Personal Branding for David Marom
 
-Status: reviewing
+Status: done
 Track: A
 Track reason: New visual surface and layout changes to the landing page — personal branding elements, attribution, and LinkedIn link not in existing design system.
 
@@ -159,3 +159,6 @@ New icon: `LinkedInIcon` added to `src/components/icons/index.tsx`.
   - `src/components/Footer/Footer.module.css` — added `.attribution` and `.linkedinLink` styles
 - Deviations from brief: none
 - New design tokens used: none
+
+## Completion Summary
+Added personal branding attribution to the landing page for David Marom's portfolio. Changes span three locations: a LinkedIn icon link in the Navbar (icon-only on mobile, labelled on tablet+), a "Built by David Marom" byline in the Hero between the headline and code block, and a footer attribution line. All LinkedIn links point to https://www.linkedin.com/in/maromdavid/ and open in a new tab. No new design tokens introduced. Confirmed done by user on 2026-06-10.
