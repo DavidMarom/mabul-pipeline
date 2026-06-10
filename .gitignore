@@ -43,3 +43,9 @@ next-env.d.ts
 # product skill — local only, cloners get first-time onboarding
 PRODUCT_KNOWLEDGE.md
 
+# task history — local only, not for cloners
+.claude/tasks/*.md
+!.claude/tasks/TASKS.md
+.claude/tasks/goals/*.md
+.claude/tasks/.current-task
+
