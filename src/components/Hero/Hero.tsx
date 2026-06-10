@@ -9,6 +9,17 @@ export function Hero() {
         <p className={styles.eyebrow}>Start with /product</p>
         <h1 className={styles.headline}>Mabul Pipeline</h1>
 
+        <p className={styles.byline}>
+          Built by{" "}
+          <a
+            href="https://www.linkedin.com/in/maromdavid/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            David Marom
+          </a>
+        </p>
+
         <CodeBlock />
 
         <div className={styles.ctaGroup}>

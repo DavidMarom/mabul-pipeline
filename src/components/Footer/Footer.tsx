@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <p className={styles.text}>
-        © {new Date().getFullYear()} Mabul Pipeline —{" "}
+        © {new Date().getFullYear()} Mabul AI Pipeline —{" "}
         <a
           href="https://github.com/DavidMarom/mabul-pipeline"
           target="_blank"
@@ -13,6 +13,17 @@ export function Footer() {
           aria-label="View Mabul Pipeline on GitHub"
         >
           MIT License
+        </a>
+      </p>
+      <p className={styles.attribution}>
+        Built by{" "}
+        <a
+          href="https://www.linkedin.com/in/maromdavid/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.linkedinLink}
+        >
+          David Marom
         </a>
       </p>
     </footer>

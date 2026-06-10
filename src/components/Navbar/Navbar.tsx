@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./Navbar.module.css";
-import { GitHubIcon } from "@/components/icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 
 export function Navbar() {
   return (
@@ -23,6 +23,15 @@ export function Navbar() {
           >
             <GitHubIcon />
             GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/maromdavid/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.linkedinLink}
+          >
+            <LinkedInIcon />
+            <span className={styles.linkedinLabel}>LinkedIn</span>
           </a>
         </nav>
       </div>

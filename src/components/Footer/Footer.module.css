@@ -28,3 +28,28 @@
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+.attribution {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+}
+
+.linkedinLink {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 150ms ease;
+}
+
+.linkedinLink:hover {
+  color: var(--color-accent-hover);
+}
+
+.linkedinLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

@@ -119,9 +119,21 @@ bg → surface → surface-raised
 | Footer | `src/components/Footer/` | Stable |
 | FeatureCard | `src/components/FeatureCard/` | Stable |
 | Features (grid) | `src/components/Features/` | Stable |
-| Hero | `src/components/Hero/` | In progress |
-| Icons | `src/components/icons/` | In progress |
+| Hero | `src/components/Hero/` | Stable |
+| Icons | `src/components/icons/` | Stable |
 | PageHeader | `src/components/PageHeader/` | Planned — inner-page eyebrow + h1 + tagline pattern |
 | SkillCard | `src/components/SkillCard/` | Planned — command badge + persona + responsibilities |
 | PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
 | DiscordBanner | `src/components/DiscordBanner/` | Planned — community invite strip between Personas and Footer |
+
+---
+
+## Attribution pattern
+
+For portfolio/author attribution on landing pages:
+
+- **Primary placement:** Hero byline — `<p class="byline">Built by <a>Name</a></p>` inserted after the headline, before any code/demo block. "Built by " in `--color-text-secondary`, name in `--color-accent` with underline on hover.
+- **Secondary placements:** Navbar external link (icon + label, same style as GitHub link); Footer second line.
+- **Icon spec:** External-platform icons (GitHub, LinkedIn) live in `src/components/icons/index.tsx`, 18×18px SVG, `fill="currentColor"`, `aria-hidden="true"`.
+- **LinkedIn icon:** Added alongside GitHub in the icons file. Navbar label hidden on mobile (`display: none`), visible on tablet+ (`display: inline`).
+- **Contrast note:** `--color-accent` (#4f8ef7) on `--color-bg` (#0d0d0d) is WCAG AA compliant (~4.9:1).

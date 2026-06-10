@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mabul Pipeline",
-  description: "AI Development Pipeline",
+  title: "Mabul AI Pipeline",
+  description: "End-to-end AI fullstack development platform.",
   icons: {
     icon: [
       { url: "/favicon2/favicon.ico", sizes: "48x48" },
