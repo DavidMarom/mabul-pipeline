@@ -7,6 +7,7 @@ export function SkillCard({
   role,
   description,
   responsibilities,
+  actions,
 }: SkillCardProps) {
   return (
     <article className={styles.card}>
@@ -25,6 +26,7 @@ export function SkillCard({
           </li>
         ))}
       </ul>
+      {actions}
     </article>
   );
 }

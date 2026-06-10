@@ -40,4 +40,17 @@ export const SKILLS_DATA: SkillCardProps[] = [
       "Reports completion and any deviations back to product",
     ],
   },
+  {
+    command: "/security",
+    personaName: "Nehemiah",
+    role: "Security Engineer",
+    description:
+      "Audits the codebase for selected vulnerability classes, writes a precise remediation report with exact file and line citations, and hands off findings to the product team so they get fixed.",
+    responsibilities: [
+      "Presents 24 vulnerability classes for the user to select from",
+      "Reads source files, config, middleware, and dependencies — never guesses",
+      "Writes a dated report to docs/security/ with severity, location, risk, and fix for every finding",
+      "Hands the report to Product to create a Track B developer remediation task",
+    ],
+  },
 ];

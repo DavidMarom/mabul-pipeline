@@ -125,6 +125,27 @@ bg → surface → surface-raised
 | SkillCard | `src/components/SkillCard/` | Planned — command badge + persona + responsibilities |
 | PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
 | DiscordBanner | `src/components/DiscordBanner/` | Planned — community invite strip between Personas and Footer |
+| VulnerabilityListButton | `src/components/VulnerabilityListButton/` | Planned — trigger button + modal for Nehemiah's 24 vulnerability classes |
+
+---
+
+## Modal / overlay pattern
+
+First established for the Nehemiah vulnerability list popup. Use for all future modal dialogs.
+
+| Property | Value | Rationale |
+|---|---|---|
+| Backdrop | `rgba(0,0,0,0.6)` fixed inset-0 | Sufficient contrast to focus attention without full black-out |
+| Panel background | `var(--color-surface)` | Sits one step above page bg — elevation via color |
+| Panel border | `1px solid var(--color-border)` | Consistent with card border |
+| Panel radius | `12px` | Matches card radius |
+| Panel max-width | `480px` (tablet+) | Comfortably lists text content; full-width minus margins on mobile |
+| Panel max-height | `80dvh` with `overflow-y: auto` | Prevents overflow on short viewports |
+| Panel padding | `var(--space-4)` | Standard card padding |
+| Close button size | 44×44px min | Touch target rule |
+| z-index | `100` | Above all page content |
+
+**ARIA contract:** `role="dialog"`, `aria-modal="true"`, `aria-labelledby` → modal title id. Focus moves to close button on open; returns to trigger on close. `Escape` closes.
 
 ---
 

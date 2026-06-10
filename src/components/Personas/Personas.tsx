@@ -27,6 +27,14 @@ const PERSONAS: Persona[] = [
     description:
       "Senior full-stack developer with 15+ years of experience. Builds production-ready Next.js components using CSS Modules - clean, maintainable code that human engineers can own for years.",
   },
+  {
+    id: "nehemiah",
+    name: "Nehemiah",
+    role: "Security",
+    image: "/personas/Nehemiah.png",
+    description:
+      "Professional application security engineer. Audits codebases for vulnerabilities across 24 vulnerability classes, writes precise remediation reports with exact file citations, and hands findings to the team so they get fixed.",
+  },
 ];
 
 export function Personas() {

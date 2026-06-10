@@ -13,4 +13,10 @@ export const TRACKS: Track[] = [
       "Bug fixes, copy changes, logic updates, and small tweaks where all values already exist in the design system.",
     steps: ["You", "/product", "/developer", "/product"],
   },
+  {
+    label: "Track C — Security Audit",
+    description:
+      "Security-first scan — Nehemiah audits the codebase for selected vulnerability classes, writes a remediation report, and hands findings to product as a Track B fix task.",
+    steps: ["You", "/security", "/product", "/developer", "/product"],
+  },
 ];

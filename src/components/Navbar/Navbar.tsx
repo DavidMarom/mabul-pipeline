@@ -6,7 +6,7 @@ export function Navbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.inner}>
-        <span className={styles.logo}>Mabul pipeline SKILLS</span>
+        <span className={styles.logo}>end-to-end fullstack AI pipeline</span>
         <nav className={styles.actions}>
           <Link href="/" className={styles.navLink}>
             Home

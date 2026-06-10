@@ -16,4 +16,4 @@
 
 ## Development
 
-<!-- /developer appends entries here: deviations from briefs, pitfalls hit during implementation, reusable patterns. -->
+- **CSS transform breaks position:fixed on children** — any parent with `transform` (including hover animations like `translateY`) creates a new stacking context, making `position: fixed` descendants scroll with the page instead of the viewport. Fix: render modals/overlays via `ReactDOM.createPortal(..., document.body)`. Guard with a `mounted` state to avoid SSR issues in Next.js App Router.
