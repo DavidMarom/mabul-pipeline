@@ -22,6 +22,7 @@ Defined in `src/app/globals.css` as CSS custom properties.
 | `--color-accent-hover` | `#3a7de0` | Accent on hover |
 | `--color-discord` | `#5865F2` | Discord brand CTA background — purposefully off-palette to signal "leaves the app" |
 | `--color-discord-hover` | `#4752c4` | Discord CTA hover state |
+| `--color-accent-border` | `rgba(79, 142, 247, 0.25)` | Border on accent-tinted elements (e.g. token counter pill) — more visible than `--color-accent-dim` bg alone |
 
 **Theme:** dark only (`color-scheme: dark` on `html`).
 
@@ -82,6 +83,7 @@ Max content width: **1080px**, centered with `margin: 0 auto`.
 | Icon badges | 10px |
 | Focus ring offset elements | 2–4px |
 | Buttons | 8px — consistent with Hero implementation; softer than card radius to feel actionable |
+| Pill badges (stat chips, counters) | 100px (`--radius-pill`) — full pill; distinguishes read-only metadata from interactive buttons |
 
 ---
 
@@ -126,6 +128,7 @@ bg → surface → surface-raised
 | PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
 | DiscordBanner | `src/components/DiscordBanner/` | Planned — community invite strip between Personas and Footer |
 | VulnerabilityListButton | `src/components/VulnerabilityListButton/` | Planned — trigger button + modal for Nehemiah's 24 vulnerability classes |
+| TokenCounter | `src/components/TokenCounter/` | Stable — read-only pill badge in Navbar showing total Claude Code tokens for this project |
 
 ---
 

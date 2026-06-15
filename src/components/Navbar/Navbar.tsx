@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
+import { TokenCounter } from "@/components/TokenCounter/TokenCounter";
 
 export function Navbar() {
   return (
@@ -14,6 +15,7 @@ export function Navbar() {
           <Link href="/skills" className={styles.navLink}>
             Skills
           </Link>
+          <TokenCounter />
           <a
             href="https://github.com/DavidMarom/mabul-pipeline"
             target="_blank"

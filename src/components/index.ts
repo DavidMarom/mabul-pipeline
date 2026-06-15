@@ -10,3 +10,4 @@ export { SkillCard } from "./SkillCard/SkillCard";
 export { PipelineFlow } from "./PipelineFlow/PipelineFlow";
 export { DiscordBanner } from "./DiscordBanner/DiscordBanner";
 export { VulnerabilityListButton } from "./VulnerabilityListButton/VulnerabilityListButton";
+export { TokenCounter } from "./TokenCounter/TokenCounter";

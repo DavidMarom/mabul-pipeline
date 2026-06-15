@@ -10,6 +10,8 @@
   --color-accent-hover: #3a7de0;
   --color-discord: #5865F2;
   --color-discord-hover: #4752c4;
+  --color-accent-border: rgba(79, 142, 247, 0.25);
+  --radius-pill: 100px;
 
   --space-1: 4px;
   --space-2: 8px;

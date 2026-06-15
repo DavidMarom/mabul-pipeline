@@ -1,0 +1,47 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 24px;
+  padding: 0 var(--space-2);
+  background: var(--color-accent-dim);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: opacity 200ms ease;
+}
+
+.loading {
+  opacity: 0.5;
+}
+
+.prefix {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.count {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.label {
+  display: none;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .prefix {
+    display: none;
+  }
+
+  .label {
+    display: inline;
+  }
+}
