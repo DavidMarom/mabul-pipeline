@@ -128,7 +128,27 @@ bg → surface → surface-raised
 | PipelineFlow | `src/components/PipelineFlow/` | Planned — Track A / Track B visual flow |
 | DiscordBanner | `src/components/DiscordBanner/` | Planned — community invite strip between Personas and Footer |
 | VulnerabilityListButton | `src/components/VulnerabilityListButton/` | Planned — trigger button + modal for Nehemiah's 24 vulnerability classes |
-| TokenCounter | `src/components/TokenCounter/` | Stable — read-only pill badge in Navbar showing total Claude Code tokens for this project |
+| TokenCounter | `src/components/TokenCounter/` | Stable — pill badge in Navbar showing Claude Code tokens since last reset; includes inline reset button |
+
+---
+
+## Pill with inline action pattern
+
+First established for the TokenCounter reset button. Use when a read-only stat chip needs a single destructive-or-reset action without becoming a full button.
+
+| Property | Value | Rationale |
+|---|---|---|
+| Outer element | `<div role="status">` | `<span>` cannot validly host a `<button>`; `<div>` preserves the live region |
+| Action button visible size | 16×16px | Small enough to not overpower the metric |
+| Action button hit area | 44×44px via `::after` with `inset: -14px` | Meets touch target minimum without layout impact |
+| Action icon | `×` character, Geist Mono 12px weight 400 | No SVG needed; character is universally understood as "clear" |
+| Action color (default) | `var(--color-text-secondary)` | Muted — does not compete with the primary metric value |
+| Action color (hover) | `var(--color-text-primary)` | Brightens on hover to signal interactivity |
+| Action color (active) | `var(--color-accent)` | Brief flash to confirm the tap registered |
+| Action background | none | Transparent within the pill — no extra visual weight |
+| Focus ring | `outline: 2px solid var(--color-accent)`, `outline-offset: 3px` | Standard pattern |
+
+**ARIA contract:** outer `<div>` carries `role="status"` + `aria-live="polite"` + `aria-label` (updates after reset). The `<button>` carries `aria-label="Reset token counter"`.
 
 ---
 
