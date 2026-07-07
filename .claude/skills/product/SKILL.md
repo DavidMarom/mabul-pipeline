@@ -89,11 +89,11 @@ If the user says **"status"** or **"/status"**, do not run intake. Instead:
 If the user invokes `/product` without a new feature request AND `.current-task` contains a valid path, read the task file and check its `Status` field:
 - `designing` — remind the user the designer is working on it; offer to re-brief the designer
 - `implementing` — remind the user the developer is working on it; offer to re-brief the developer
-- `reviewing` — prompt the user for sign-off (Step 4 flow)
+- `reviewing` — prompt the user for sign-off (Step 5 flow)
 
 ### Invoked by the user — new task
 
-If the user provides a feature request or problem description, run the normal workflow below (Steps 1–4).
+If the user provides a feature request or problem description, run the normal workflow below (Steps 1–5).
 
 ---
 
@@ -129,7 +129,7 @@ Status: in progress  <!-- in progress | done -->
 - Before routing the **first** task of a brand-new goal (Step 3), write the goal's `## Plan` section: the ordered list of tasks plus the dependency/sequencing reasoning, kept to a few lines. This is the only up-front planning step the pipeline produces.
 
 **When to close a goal:**
-- In Step 4, after marking an individual task `done`, check whether it belongs to a goal. If it does, check off that task in the goal's `## Tasks` list. Once every task in the list is checked, set the goal's `Status: done`.
+- In Step 5, after marking an individual task `done`, check whether it belongs to a goal. If it does, check off that task in the goal's `## Tasks` list. Once every task in the list is checked, set the goal's `Status: done`.
 
 A goal never changes the per-task `Status` pipeline (`intake → designing → implementing → reviewing → done`) — it is purely a grouping layer on top. `.current-task` keeps pointing at whichever single task is actively being worked, regardless of goal membership.
 
@@ -228,10 +228,23 @@ The designer will chain directly to the developer — you do not need to wait or
 
 Tell the developer: "This is a fast-track task (Track B — no new design required). Use `docs/DESIGN_SYSTEM.md` as your design reference. Implement the task, then invoke `/product` to report completion."
 
-### Step 4 — Close the task
+### Step 4 — Verify
 
-When the developer reports completion:
-1. Summarise what was built for the user
+When the developer reports completion, do not go straight to the user — verify first. This is what backs the `reviewing` status in the pipeline.
+
+1. **Build check.** Run the project's build command (`npm run build`; also run `npm run lint` and `npm run typecheck` if those scripts exist in `package.json`). If it fails, do not contact the user — send the exact error output back to the developer to fix, and re-run this step when they report completion again.
+2. **Requirements check.** Walk every line of the task file's `## Requirements` section (and `## Design Brief`, if present) and verify each one against the actual code change — read the diff/files, don't take the developer's word for it. Append the result to the task file:
+   ```md
+   ## Verification
+   - [x] <requirement> — confirmed in <file:line>
+   - [ ] <requirement> — NOT MET: <what's missing>
+   ```
+3. If anything is unchecked, bounce back to the developer with the specific gap (not a vague "doesn't work") and re-run this step once they report completion again.
+4. Once the build passes and every requirement is checked off, update `Status: reviewing` in the task file, then proceed to Step 5.
+
+### Step 5 — Close the task
+
+1. Summarise what was built for the user, backed by the `## Verification` checklist — not just "the developer says it's done"
 2. Ask the user to confirm the task is done
 3. On confirmation:
    - Append the following to the task file:
