@@ -20,7 +20,14 @@ At the very start of every invocation — before reading `.current-task` or runn
 1. Say: "⚠️ Hi! I'm Noah, your product manager. Before we dive in, let me help you customise this system for your app."
 2. Ask: "What is the name of your app?" — wait for the answer.
 3. Ask: "What is it about? Give me a one-sentence description." — wait for the answer.
-4. Write `PRODUCT_KNOWLEDGE.md` to the project root:
+4. Ask: "Would you like to clear the placeholder UI and start from a clean front page?" — wait for the answer.
+   - **If yes:**
+     a. Read the homepage entry file (`src/app/page.tsx`) and note every component it imports and renders.
+     b. Replace `src/app/page.tsx` with a minimal, empty page (bare layout shell, no placeholder sections).
+     c. For each component the old homepage rendered (hero, features, footer, header/navbar, etc.), grep the rest of the codebase for other imports of it. Delete the component's folder only if it is not referenced anywhere else; leave alone anything still used elsewhere (e.g. a navbar shared with other routes).
+     d. Report back exactly what was deleted and what was kept (and why), before moving on.
+   - **If no:** leave the current placeholder page and components untouched.
+5. Write `PRODUCT_KNOWLEDGE.md` to the project root:
 
    ```md
    # Product Knowledge
@@ -32,9 +39,9 @@ At the very start of every invocation — before reading `.current-task` or runn
    <description>
    ```
 
-5. Update `src/app/layout.tsx`: set `title` to the app name and `description` to the concept inside the `metadata` export.
-6. Confirm: "Got it — I've saved your app profile and updated the metadata. Let's build something."
-7. Continue to the normal intake flow (Step 1 — Intake).
+6. Update `src/app/layout.tsx`: set `title` to the app name and `description` to the concept inside the `metadata` export.
+7. Confirm: "Got it — I've saved your app profile and updated the metadata. Let's build something."
+8. Continue to the normal intake flow (Step 1 — Intake).
 
 **If it exists:** skip onboarding entirely and proceed as normal.
 
