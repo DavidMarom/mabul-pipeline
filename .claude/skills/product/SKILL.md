@@ -83,6 +83,17 @@ If the user says **"status"** or **"/status"**, do not run intake. Instead:
    Stage: <Status field value>
    ```
 3. If `.current-task` is missing or empty, print: "No task currently in progress."
+4. If `.claude/tasks/BACKLOG.md` exists and has unchecked items, append one line: `Backlog: <n> items`.
+
+### Invoked by the user — backlog capture
+
+If the user prefixes a request with **"backlog:"** (or clearly asks to queue an idea for later rather than start it now), do **not** run intake and do **not** touch the current task. Instead:
+
+1. Append one line per idea to `.claude/tasks/BACKLOG.md` (create the file with a `# Backlog` heading if missing):
+   ```md
+   - [ ] <idea, one line> (added <YYYY-MM-DD>)
+   ```
+2. Confirm briefly: "Added to backlog (<n> items total)." — then stop. No task file, no classification, no questions. Intake happens later, when the item is pulled.
 
 ### Invoked by the user — resume
 
@@ -257,6 +268,10 @@ When the developer reports completion, do not go straight to the user — verify
    - Rename the task file to `.claude/tasks/<task-name>.done.md`
    - If this task belongs to a goal, check off its entry in that goal's `## Tasks` list. Once every task in the list is checked, set the goal's `Status: done`.
    - Delete `.claude/tasks/.current-task`
+4. **Pull from backlog.** Read `.claude/tasks/BACKLOG.md` (if it exists). If it has unchecked items, list them numbered and ask: "The backlog has <n> item(s): <list>. Want to start one?"
+   - If the user picks one: check it off in `BACKLOG.md`, then run the normal workflow (Steps 1–5) using that idea as the feature request — full intake and classification happen now, not at capture time.
+   - If the user declines or doesn't pick: stop; the backlog stays as-is.
+   - If the backlog is missing or fully checked: just stop after the close-out.
 
 ---
 

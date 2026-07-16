@@ -60,7 +60,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - New design tokens used: <list, or "none">
      ```
    - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
-   - Update `Status: reviewing` in the task file
+   - Leave `Status: implementing` in the task file — `product` owns the transition to `reviewing` after its verification pass
    - Invoke `/product` and report: a summary of what was built and any deviations from the brief.
 
 **If you were invoked by the `designer` skill** (it passed you a Design Brief and a task file path):
@@ -77,7 +77,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - New design tokens used: <list, or "none">
      ```
    - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
-   - Update `Status: reviewing` in the task file
+   - Leave `Status: implementing` in the task file — `product` owns the transition to `reviewing` after its verification pass
    - Invoke `/product` and report: a summary of what was built and any deviations from the brief.
 
 **If you were invoked by the `product` skill on the fast track** (Track B — it passed you a task file path + `docs/DESIGN_SYSTEM.md` path, no Design Brief):
@@ -95,7 +95,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
      - New design tokens used: <list, or "none">
      ```
    - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
-   - Update `Status: reviewing` in the task file
+   - Leave `Status: implementing` in the task file — `product` owns the transition to `reviewing` after its verification pass
    - Invoke `/product` and report: a summary of what was built and any deviations from the task requirements.
 
 ---
@@ -105,7 +105,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
 Task descriptions live in `.claude/tasks/`. Each file is one task.
 
 **When asked to pick up a task:**
-1. List the `.md` files in `.claude/tasks/` (excluding `TASKS.md`).
+1. List the `.md` files in `.claude/tasks/` (excluding `TASKS.md` and `BACKLOG.md`).
 2. Take the first one alphabetically, or the one the user names.
 3. Read it, confirm the goal with the user, then implement it following all rules in this skill.
 4. When done, ask the user: rename to `<name>.done.md` or delete the file.
