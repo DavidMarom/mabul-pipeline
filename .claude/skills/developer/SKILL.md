@@ -46,27 +46,10 @@ Before implementing anything, read `docs/LEARNINGS.md` — its `## Development` 
 **If you were invoked directly by the user (not by another skill):**
 Invoke the `/product` skill immediately and ask it: "What task should the developer work on next? What was the last task in progress?" Do not begin any implementation until `product` has briefed you with a task file path and Design Brief.
 
-**If you were invoked by the `product` skill** (it passed you a task file path and Design Brief):
+**If you were invoked by the `product` skill on Track A** (it passed you a task file path; the Design Brief is in the task file):
 
-1. Read the full Design Brief provided — it contains layout, component hierarchy, spacing, colors, interaction states, and accessibility requirements. If the brief is not in the message, check the task file for a `## Design Brief` section.
+1. Read the task file in full, including its `## Design Brief` section (and any `## Design Brief — addendum`) — it contains layout, component hierarchy, spacing, colors, interaction states, and accessibility requirements.
 2. Treat every spec in the brief as a hard requirement, not a suggestion.
-3. If anything in the brief is ambiguous or conflicts with a hard rule in this skill, raise it before writing code.
-4. When implementation is complete:
-   - Append the following to the task file:
-     ```md
-     ## Implementation Notes
-     - Files created/modified: <list>
-     - Deviations from brief: <list, or "none">
-     - New design tokens used: <list, or "none">
-     ```
-   - If you hit a notable pitfall or found a pattern worth reusing on future tasks, append a short bullet to the `## Development` section of `docs/LEARNINGS.md` (skip this if there's nothing worth surfacing beyond this task's own history).
-   - Leave `Status: implementing` in the task file — `product` owns the transition to `reviewing` after its verification pass
-   - Invoke `/product` and report: a summary of what was built and any deviations from the brief.
-
-**If you were invoked by the `designer` skill** (it passed you a Design Brief and a task file path):
-
-1. Read the Design Brief — treat every spec as a hard requirement, not a suggestion.
-2. Also read the task file at the provided path for full context on the problem and requirements.
 3. If anything in the brief is ambiguous or conflicts with a hard rule in this skill, raise it before writing code.
 4. When implementation is complete:
    - Append the following to the task file:
@@ -84,7 +67,7 @@ Invoke the `/product` skill immediately and ask it: "What task should the develo
 
 1. Read the task file for the full requirements.
 2. Read `docs/DESIGN_SYSTEM.md` — this is your design specification. Use only existing tokens and patterns defined there (colors, spacing, typography, breakpoints, component inventory).
-3. If implementation requires a token, pattern, or component that does not exist in the design system, **stop immediately** — invoke `/designer` with the specific gap ("I need a X token/pattern that isn't in the design system") and wait for it to update `DESIGN_SYSTEM.md` before continuing.
+3. If implementation requires a token, pattern, or component that does not exist in the design system, **stop immediately** — invoke `/product` and report the specific gap ("I need a X token/pattern that isn't in the design system"). Product will have Naamah fill it and re-brief you.
 4. Do not invent new design values — no hardcoded colors, spacing, or sizes outside the token system.
 5. When implementation is complete:
    - Append the following to the task file:

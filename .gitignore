@@ -49,3 +49,6 @@ PRODUCT_KNOWLEDGE.md
 .claude/tasks/goals/*.md
 .claude/tasks/.current-task
 
+
+# verification hook baseline — grandfathers tasks closed before the hook existed
+.claude/tasks/.verification-baseline
