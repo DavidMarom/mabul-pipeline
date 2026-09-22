@@ -98,7 +98,7 @@ If the user prefixes a request with **"backlog:"** (or clearly asks to queue an 
 ### Invoked by the user — resume
 
 If the user invokes `/product` without a new feature request AND `.current-task` contains a valid path, read the task file and check its `Status` field:
-- `designing` — remind the user the designer is working on it; offer to re-brief the designer
+- `designing` — Naamah's run ended without finishing; offer to spawn her again on this task
 - `implementing` — remind the user the developer is working on it; offer to re-brief the developer
 - `reviewing` — prompt the user for sign-off (Step 5 flow)
 
@@ -223,13 +223,12 @@ Track reason: <one line — e.g. "new component, no existing pattern" or "bug fi
 
 If this task is the first one under a brand-new goal, write that goal's `## Plan` section now (see **Goals** above) — the ordered task list with the dependency/sequencing reasoning — before handing off below.
 
-**Track A:** Hand off to `/designer` with:
-- The full contents of the task file
-- The task file path: `.claude/tasks/<task-name>.md`
+**Track A:** Spawn the `naamah` subagent (Agent tool, `subagent_type: "naamah"`) with the task file path. She works in her own context, appends a `## Design Brief` to the task file, updates `docs/DESIGN_SYSTEM.md`, and returns a short summary.
 
-Tell the designer: "Please produce a Design Brief for this task, then invoke `/developer` to implement it."
+- If she returns `BLOCKED: <question>`, ask the user that question, record the answer in the task file (`## Requirements` or `## Constraints`), and spawn her again.
+- Once she returns `DONE`, set `Status: implementing` and hand off to `/developer` with the task file path. Tell the developer: "The Design Brief is in the task file. Implement this task, then invoke `/product` to report completion."
 
-The designer will chain directly to the developer — you do not need to wait or relay the brief.
+You are the only orchestrator: skills and agents report back to you, never to each other.
 
 **Track B:** Hand off directly to `/developer` with:
 - The full contents of the task file
@@ -239,12 +238,16 @@ The designer will chain directly to the developer — you do not need to wait or
 
 Tell the developer: "This is a fast-track task (Track B — no new design required). Use `docs/DESIGN_SYSTEM.md` as your design reference. Implement the task, then invoke `/product` to report completion."
 
+### Step 3.5 — Design gap from the developer
+
+If the developer reports back that it needs a token, pattern, or component that isn't in `docs/DESIGN_SYSTEM.md`, spawn the `naamah` subagent with the task file path and that specific gap as a gap-fill request. When she returns `DONE`, re-brief the developer: "The gap is filled — see the `## Design Brief — addendum` in the task file. Continue the implementation."
+
 ### Step 4 — Verify
 
 When the developer reports completion, do not go straight to the user — verify first. This is what backs the `reviewing` status in the pipeline.
 
 1. **Build check.** Run the project's build command (`npm run build`; also run `npm run lint` and `npm run typecheck` if those scripts exist in `package.json`). If it fails, do not contact the user — send the exact error output back to the developer to fix, and re-run this step when they report completion again.
-2. **Requirements check.** Walk every line of the task file's `## Requirements` section (and `## Design Brief`, if present) and verify each one against the actual code change — read the diff/files, don't take the developer's word for it. Append the result to the task file:
+2. **Requirements check.** Run `git status --short` and `git diff` to get the actual change set — this, not the developer's report, is what you review. Walk every line of the task file's `## Requirements` section (and `## Design Brief`, if present) and verify each one against that diff. Append the result to the task file:
    ```md
    ## Verification
    - [x] <requirement> — confirmed in <file:line>
@@ -266,6 +269,7 @@ When the developer reports completion, do not go straight to the user — verify
    - If the task surfaced a recurring pattern, framing mistake, or user preference that would help future intakes (not just this task's history), append a short bullet to the `## Product` section of `docs/LEARNINGS.md`. Skip this if there's nothing worth surfacing beyond this task.
    - Update `Status: done` in the task file
    - Rename the task file to `.claude/tasks/<task-name>.done.md`
+   - Commit the work as one unit: `git add -A` then `git commit -m "<task title>"`, so every closed task is a single reviewable commit. If the repo has no git (`git rev-parse --is-inside-work-tree` fails), skip this and tell the user their verification step is running blind.
    - If this task belongs to a goal, check off its entry in that goal's `## Tasks` list. Once every task in the list is checked, set the goal's `Status: done`.
    - Delete `.claude/tasks/.current-task`
 4. **Pull from backlog.** Read `.claude/tasks/BACKLOG.md` (if it exists). If it has unchecked items, list them numbered and ask: "The backlog has <n> item(s): <list>. Want to start one?"

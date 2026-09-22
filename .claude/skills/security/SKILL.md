@@ -7,13 +7,7 @@ description: Activates Nehemiah, an application security engineer who audits the
 
 ## Persona
 
-You are Nehemiah, a professional application security engineer. You audit codebases for vulnerabilities, write clear and actionable remediation reports, and hand off findings to the product team so they get fixed.
-
-**Hard rules — never break these:**
-- Never fabricate findings — every finding must cite an exact file path, line number, or verifiable surface in the project
-- Never recommend security theatre — every recommendation must be proportionate to the actual risk
-- Never summarise away specifics — findings must name the exact code or config that is vulnerable
-- Always link remediation to the actual code — not generic advice
+This skill coordinates a security audit. The audit itself is done by **Nehemiah**, the `nehemiah` subagent (`.claude/agents/nehemiah.md`), in its own context — a full-codebase sweep would otherwise flood this conversation. This skill does the two things a subagent can't: ask the user what to audit, and hand the result to `/product`.
 
 ---
 
@@ -55,99 +49,21 @@ Wait for the user's selection before proceeding.
 
 ---
 
-### Step 2 — Audit the codebase
+### Step 2 — Spawn Nehemiah
 
-For each selected vulnerability class, examine the relevant parts of the codebase:
+Spawn the `nehemiah` subagent (Agent tool, `subagent_type: "nehemiah"`) with:
+- The exact list of classes the user selected
+- Today's date as `YYYY-MM-DD`
 
-| Class | Where to look |
-|---|---|
-| SQL Injection | Database queries, ORM calls, raw SQL strings |
-| Directory Traversal | File system operations, path construction with user input |
-| LFI / RFI | Dynamic `require`, `import`, or file reads from user input |
-| SSRF | Outbound HTTP calls (`fetch`, `axios`, etc.) that take user-supplied URLs |
-| XSS | `dangerouslySetInnerHTML`, unescaped interpolation, DOM manipulation |
-| CSRF | Form submissions, state-mutating API routes, SameSite cookie config |
-| Open Redirects | `redirect()`, `router.push()`, `res.redirect()` with user-controlled values |
-| Command Injection | `exec`, `spawn`, `child_process`, shell strings with user input |
-| Insecure / Missing HTTP Headers | `next.config.*` headers config, middleware, API route response headers |
-| CORS Misconfiguration | `Access-Control-Allow-Origin`, CORS middleware config |
-| Clickjacking | `X-Frame-Options` or `frame-ancestors` CSP in headers config |
-| Sensitive Data Exposure | Secrets in `.env.example`, logs, API responses, client bundles |
-| Mixed Content | `http://` URLs hardcoded in components or config |
-| SSL/TLS Misconfiguration | Server config, `next.config.*`, deployment config |
-| Open Ports / Exposed Services | `package.json` scripts, Docker/compose files, deployment config |
-| Broken Authentication Indicators | Auth middleware, session checks, protected route patterns |
-| Session Cookie Misconfiguration | Cookie options: `HttpOnly`, `Secure`, `SameSite`, expiry |
-| Outdated Libraries / CVEs | `package.json` dependency versions — flag anything more than one major version behind or with a known CVE |
-| Exposed .git / Backup Files | `.gitignore`, public folder, deployment config |
-| Information Disclosure | Error handlers, stack traces in responses, `x-powered-by` header |
-| API Endpoint Exposure | Route files, publicly documented but unprotected endpoints |
-| Subdomain Takeover Risks | DNS config files, CNAME records pointing at decommissioned services |
+Do not audit anything yourself — that's the point of the subagent. Wait for it to return `DONE: <report path>` with the finding counts, then show the user that summary.
 
-Be thorough. Read source files, config files, `package.json`, middleware, API routes, and environment file templates. Do not guess — only report what you can observe in the files.
+If it reports zero findings, stop here: tell the user the selected classes came back clean and skip the handoff.
 
 ---
 
-### Step 3 — Write the report
+### Step 3 — Hand off to Product
 
-Create the directory `docs/security/` if it does not exist.
-
-Write the report to:
-```
-docs/security/nehemiah-report-<YYYY-MM-DD>.md
-```
-
-Use today's date in the filename.
-
-Report format:
-
-```markdown
-# Security Audit Report — <YYYY-MM-DD>
-
-**Audited by:** Nehemiah  
-**Scope:** <comma-separated list of selected vulnerability classes>
-
----
-
-## Findings
-
-<!-- One section per finding. If no findings, skip this section and say so under ## Summary. -->
-
-### [<SEVERITY>] <Vulnerability Class> — <short title>
-
-- **Location:** `<file path>:<line number>` (or surface description if not file-specific)
-- **Description:** What the vulnerable code or config does and why it is a problem.
-- **Risk:** What an attacker can do if this is exploited.
-- **Fix:**
-  Concrete remediation steps. Include a corrected code snippet where applicable.
-
-  ```<language>
-  // corrected example
-  ```
-
----
-
-## Clean
-
-The following selected classes were audited and no issues were found:
-
-- <class name>
-- <class name>
-
----
-
-## Summary
-
-<One short paragraph: total findings count, severity breakdown, and the highest-priority fix.>
-```
-
-Severity values: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFO`.
-
----
-
-### Step 4 — Hand off to Product
-
-After writing the report, invoke `/product` and say:
+After Nehemiah returns with findings, invoke `/product` and say:
 
 > "Nehemiah has completed a security audit. The report is at `docs/security/nehemiah-report-<YYYY-MM-DD>.md`. Please create a developer task to fix all findings in that report. The task should reference the report as its requirements document. Use Track B (no design work — these are code and config fixes)."
 
