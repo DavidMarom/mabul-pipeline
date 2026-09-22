@@ -8,7 +8,9 @@ export function Hero() {
       <div className={styles.content}>
         <p className={styles.byline}>Built by{" "}<a href="https://www.linkedin.com/in/maromdavid/" target="_blank" rel="noopener noreferrer">David Marom</a></p>
         <h1 className={styles.headline}>Mabul Pipeline</h1>
-
+        <p className={styles.tagline}>
+          A multi-agent AI workflow where specialized personas take a feature from brief to shipped code. Product, design, engineering, and security agents collaborate end-to-end so you don&apos;t have to babysit every handoff. Start with /product
+        </p>
 
         <CodeBlock />
 

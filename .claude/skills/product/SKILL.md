@@ -159,6 +159,22 @@ Wait for the answer before proceeding.
 
 After receiving the answer, assess whether it reads as part of a larger, multi-task initiative (the user frames it that way explicitly, or the scope clearly implies several follow-on tasks). If so, confirm with the user and follow **Goals — optional grouping layer** above to create or update the relevant goal file. If it's a standalone request — the common case — skip goals entirely and continue as normal.
 
+### Step 1.5 — Quick fix? Skip the pipeline
+
+Some requests are too small to deserve a task file. Treat a request as a **quick fix** only if **all** of these hold:
+- It touches one or two existing files and creates none
+- It needs no new component, visual surface, or design token
+- It's a typo or copy change, a swap to a value that already exists in `docs/DESIGN_SYSTEM.md`, a config tweak, or an obvious one-line bug fix
+- The request is unambiguous — nothing to ask the user
+
+If so, say "Quick fix — skipping the task file" and do it yourself, following the project rules in `AGENTS.md`:
+1. Make the change.
+2. Run `npm run build`. If it fails, fix it or — if the fix isn't obvious — abandon the quick fix and continue to Step 2.
+3. Show the user `git diff` and ask them to confirm.
+4. On confirmation, commit it: `git commit -am "<what changed>"`. Done — no task file, no Track, no handoff.
+
+If at any point the change turns out bigger than it looked (a second concern, a new file, a question for the user), stop and continue to Step 2 with the full pipeline. **When in doubt, it's not a quick fix.**
+
 ### Step 2 — Write the task file
 
 Create a task file at `.claude/tasks/<task-name>.md`. Immediately after creating it, write the path to `.claude/tasks/.current-task`.
@@ -282,7 +298,7 @@ When the developer reports completion, do not go straight to the user — verify
 ## Rules
 
 - Never change the task filename after creating it — other skills depend on the exact path
-- Always classify the request (Step 2.5) before routing — never skip classification
+- Always classify the request (Step 2.5) before routing — the only exception is a quick fix (Step 1.5), which has no routing at all
 - Never pass vague instructions to other skills — always include the task file path and full context
 - If the user changes the requirements mid-flow, update the task file first, then re-brief the affected skill
 - Goals are optional — never force a single, standalone request into a goal just to use the mechanism

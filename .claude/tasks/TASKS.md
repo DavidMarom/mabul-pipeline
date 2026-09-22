@@ -1,7 +1,7 @@
 # Task template
 
-Copy this file, rename it to describe your task (e.g. `add-login-button.md`), and fill it in.
-The `developer` skill will read files from this folder and pick them up in order.
+Task files are created by `/product` — run it and describe what you want to build rather than writing one by hand.
+For reference, a task file looks like this (product adds Status, Track, and the later sections itself):
 
 ---
 
